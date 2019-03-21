@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+  <body>
+
+      <h2 style="text-align: center;font-size: 50px">BIENVENIDO <br><br>A </h2>
+      <br>
+      <h2 style="text-align: center;font-size: 50px">APPM VETS</h2>
+      <br>
+    <div class="row">
+        <div class="col-md-12">
+            <img style="display: block; margin-left: auto;margin-right: auto;" class="img-responsive" src="../static/resources/images/mascotas.png" th:src="@{/resources/images/mascotas.png}"/>
+        </div>
+    </div>
+   
+    <div style="text-align: center">
+        <a class="btn btn-default" th:href="@{/reporte}">Reporte veterinario</a>
+           <a class="btn btn-default" th:href="@{/reportaje}">Reporte mascotas</a>
+           <a class="btn btn-default" th:href="@{/login/report}">Reporte login</a>
+           <a class="btn btn-default" th:href="@{/owners/report}">Reporte propietarios</a>
+           <a class="btn btn-default" th:href="@{/citas/report}">Reporte citas</a>
+           <a class="btn btn-default" th:href="@{/users/report}" >Reporte de Usuarios</a>
+
+
+    </div>
+
+  </body>
+
+</html>

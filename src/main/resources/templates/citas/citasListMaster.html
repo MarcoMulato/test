@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'citas')}">
+
+<body>
+
+  <h2 th:text="#{date}">Veterinarians</h2>
+
+  <table id="citas " class="table table-striped">
+    <thead>
+      <tr>
+        <th th:text="#{name}">Name</th>
+        <th th:text="#{pet}">Pet</th>
+        <th th:text="#{specialty}">Specialty</th>
+        <th th:text="#{mDate}">mDate</th>
+        <th th:text="#{status}">Status</th>
+        <th th:text="#{actions}">Acciones</th>
+        
+        <!-- 
+        <th>Acciones</th> 
+        -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="cita : ${citas.citasList}">
+        <td th:text="${cita.nombre}"/>
+        <td th:text="${cita.mascota}"/>
+        <td th:text="${cita.especialidad}"/>
+        <td th:text="${cita.fecha}"/>
+        <td th:text="${cita.confirmado}"/>
+          <th>
+               <a th:href="@{/citas/edit/__${cita.id}__}"  >Editar</a> 
+          </th>
+        
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div style="text-align: center">
+      
+      <br>
+      <br>
+      <a class="btn btn-default" th:href="@{/citas/newMaster}" >Agregar citas</a>
+  </div>
+  
+
+
+</body>
+</html>

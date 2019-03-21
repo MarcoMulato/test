@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'citas')}">
+
+<body>
+
+  <h2 th:text="#{date}">Veterinarians</h2>
+  
+  <form th:object="${cita}" class="form-horizontal" id="add-vet-form" method="post">
+    <div class="form-group has-feedback">
+      <input
+        th:replace="~{fragments/inputField :: input (#{name}, 'nombre', 'text')}" />
+      <input
+        th:replace="~{fragments/inputField :: input (#{mDate}, 'fecha', 'date')}" />
+      <input
+        th:replace="~{fragments/inputField :: input (#{pet}, 'mascota', 'text')}" />
+
+
+      <input 
+          th:replace="~{fragments/selectField :: select ('Especialidad', 'especialidad', ${specialties})}" />  
+      <input 
+           th:replace="~{fragments/selectField :: select ('Status', 'confirmado', ${status})}" />
+     
+
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+     
+          
+          
+          <button 
+          th:with="text=${cita['new']} ? 'Add Cita' : 'Update Cita'"
+          class="btn btn-default" type="submit" >Agregar y guardar</button>
+          
+
+        
+        </div>
+    </div>
+  </form>
+</body>
+</html>

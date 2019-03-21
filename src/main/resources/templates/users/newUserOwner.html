@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/headless :: headless (~{::body},'user')}">
+    <body>
+         <h2>Registrate, owner</h2>
+        <form th:object="${user}" class="form-horizontal" id="add-user-form" method="post">
+            <div class="form-group has-feedback">
+                <input
+                th:replace="~{fragments/inputField :: input (Correo, 'correo', 'text')}" />
+                <input
+                th:replace="~{fragments/inputField :: input (Contraseña, 'password', 'password')}" />
+                <input
+                th:replace="~{fragments/inputField :: input (CodigoPostal, 'cp', 'postal')}" />
+                <input
+                th:replace="~{fragments/inputField :: input (Municipio, 'municipio', 'text')}" />
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button
+                        th:with="text=${user['new']} ? 'Añadir Usuario' : 'Actualizar Usuario'"
+                        class="btn btn-default" type="submit" th:text="${text}" >Registrarse
+                    </button>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

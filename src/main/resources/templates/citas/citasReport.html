@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'citas')}">
+
+<body>
+
+  <h2 th:text="#{date}">Veterinarians</h2>
+
+  <table id="citas " class="table table-striped">
+    <thead>
+      <tr>
+        <th th:text="#{name}">Name</th>
+        <th th:text="#{mDate}">mDate</th>
+        <th th:text="#{specialty}">specialty</th>
+        <th th:text="#{status}">status</th>
+        <th th:text="#{actions}">actions</th>
+        <!-- 
+        <th>Acciones</th> 
+        -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="cita : ${citas.citasReportList}">
+        <td th:text="${cita.nombre}"/>
+        <td th:text="${cita.fecha}"/>
+        <td th:text="${cita.especialidad}"/>
+        <td th:text="${cita.status}"/>
+        <td th:text="${cita.accion}"/>
+        
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div style="text-align: center">
+      
+      <br>
+      <br>
+  </div>
+  
+
+
+</body>
+</html>
