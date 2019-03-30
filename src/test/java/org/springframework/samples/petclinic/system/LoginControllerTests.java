@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,18 +23,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 // Waiting https://github.com/spring-projects/spring-boot/issues/5574
-@Ignore
-@WebMvcTest(controllers = CrashController.class)
-public class CrashControllerTests {
+@WebMvcTest(LoginController.class)
+public class LoginControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     
+    //@WithMockUser (username = "admin", roles={"1"})
     @Test
-    public void testTriggerException() throws Exception {
-        mockMvc.perform(get("/oups")).andExpect(view().name("exception"))
-                .andExpect(model().attributeExists("exception"))
-                .andExpect(forwardedUrl("exception")).andExpect(status().isOk());
+    public void testLoginPage() throws Exception {
+        mockMvc.perform(get("/login"))
+            .andExpect(status().isOk())
+            //.andExpect(model().attributeExists("errorMessge"))
+            .andExpect(view().name("/login"));
+    }
+    //@WithMockUser (username = "admin", roles={"1"})
+    @Test
+    public void testLogoutPage() throws Exception {
+        mockMvc.perform(get("/logout"))
+            .andExpect(status().is3xxRedirection());
+            //.andExpect(model().attributeExists("errorMessge"))
+            //.andExpect(view().name("/login"));
     }
 }

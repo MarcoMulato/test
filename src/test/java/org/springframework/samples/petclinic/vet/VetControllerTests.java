@@ -22,6 +22,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.samples.petclinic.vet.Vet;
 import org.springframework.samples.petclinic.vet.VetController;
 import org.springframework.samples.petclinic.vet.VetRepository;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -59,6 +60,8 @@ public class VetControllerTests {
     /**
      * paso la prueba
      */
+    
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testInitCreationForm() throws Exception {
         mockMvc.perform(get("/vets/new"))
@@ -85,6 +88,7 @@ public class VetControllerTests {
     /*
     *Paso la prueba pero incompleta
     */
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testInitUpdateVetForm() throws Exception {
         mockMvc.perform(get("/vets/edit/{vetId}", TEST_VET_ID))
@@ -99,6 +103,7 @@ public class VetControllerTests {
     /**
      * Paso la prueba
      */
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testDeleteVet() throws Exception {
         mockMvc.perform(get("/vet/delete/{vetId}", TEST_VET_ID))
@@ -107,6 +112,7 @@ public class VetControllerTests {
     }
     
     //PruebA rAUL
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testMostarVets() throws Exception{
         mockMvc.perform(get("/reporte"))

@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import org.springframework.security.test.context.support.WithMockUser;
 
 /**
  * Test class for {@link PetTypeFormatter}
@@ -32,7 +33,7 @@ public class PetTypeFormatterTests {
     public void setup() {
         this.petTypeFormatter = new PetTypeFormatter(pets);
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testPrint() {
         PetType petType = new PetType();
@@ -40,14 +41,14 @@ public class PetTypeFormatterTests {
         String petTypeName = this.petTypeFormatter.print(petType, Locale.ENGLISH);
         assertEquals("Hamster", petTypeName);
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void shouldParse() throws ParseException {
         Mockito.when(this.pets.findPetTypes()).thenReturn(makePetTypes());
         PetType petType = petTypeFormatter.parse("Bird", Locale.ENGLISH);
         assertEquals("Bird", petType.getName());
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test(expected = ParseException.class)
     public void shouldThrowParseException() throws ParseException {
         Mockito.when(this.pets.findPetTypes()).thenReturn(makePetTypes());

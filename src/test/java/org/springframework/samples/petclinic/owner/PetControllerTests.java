@@ -23,6 +23,7 @@ import org.springframework.samples.petclinic.owner.PetController;
 import org.springframework.samples.petclinic.owner.PetRepository;
 import org.springframework.samples.petclinic.owner.PetType;
 import org.springframework.samples.petclinic.owner.PetTypeFormatter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -61,7 +62,8 @@ public class PetControllerTests {
         given(this.pets.findById(TEST_PET_ID)).willReturn(new Pet());
 
     }
-
+    
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testInitCreationForm() throws Exception {
         mockMvc.perform(get("/owners/{ownerId}/pets/new", TEST_OWNER_ID))
@@ -69,7 +71,7 @@ public class PetControllerTests {
             .andExpect(view().name("pets/createOrUpdatePetForm"))
             .andExpect(model().attributeExists("pet"));
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testProcessCreationFormSuccess() throws Exception {
         mockMvc.perform(post("/owners/{ownerId}/pets/new", TEST_OWNER_ID)
@@ -80,7 +82,7 @@ public class PetControllerTests {
             .andExpect(status().is3xxRedirection())
             .andExpect(view().name("redirect:/owners/{ownerId}"));
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testProcessCreationFormHasErrors() throws Exception {
         mockMvc.perform(post("/owners/{ownerId}/pets/new", TEST_OWNER_ID)
@@ -94,7 +96,7 @@ public class PetControllerTests {
             .andExpect(status().isOk())
             .andExpect(view().name("pets/createOrUpdatePetForm"));
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testInitUpdateForm() throws Exception {
         mockMvc.perform(get("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID))
@@ -102,7 +104,7 @@ public class PetControllerTests {
             .andExpect(model().attributeExists("pet"))
             .andExpect(view().name("pets/createOrUpdatePetForm"));
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testProcessUpdateFormSuccess() throws Exception {
         mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID)
@@ -113,7 +115,7 @@ public class PetControllerTests {
             .andExpect(status().is3xxRedirection())
             .andExpect(view().name("redirect:/owners/{ownerId}"));
     }
-
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testProcessUpdateFormHasErrors() throws Exception {
         mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID)

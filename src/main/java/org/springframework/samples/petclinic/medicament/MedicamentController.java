@@ -35,6 +35,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 class MedicamentController {
     private static final String VIEWS_MEDICAMENT_CREATE_OR_UPDATE_FORM = "medicaments/createOrUpdateMedicamentForm";
+    //static String targetFolder = System.getProperty("user.dir")+"/src/main/resources/static/resources/images/medicinas/";
+    public static final String targetFolder=  "d:/filesUploaded/";
+
     private final MedicamentRepository medicaments;
     private final Medicament_reportRepository t;
     private final userReportsRepository urr;
@@ -69,19 +72,19 @@ class MedicamentController {
         String nombre=null;
         System.out.println("Estoy en funcion 2");
         StringBuilder fileNames = new StringBuilder();
-        for(MultipartFile file: files){
-            System.out.println("ARCHIVO: " + file.getOriginalFilename());
-            Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
-            nombre=file.getOriginalFilename();
-            fileNames.append(file.getOriginalFilename());
-            try{
-                Files.write(fileNameAndPath, file.getBytes());
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-            medicament.setImagen(nombre);
-            //model.addAttribute("msg", "Se logró copiar " + fileNames.toString());
-        }
+//        for(MultipartFile file: files){
+//            System.out.println("ARCHIVO: " + file.getOriginalFilename());
+//            Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+//            nombre=file.getOriginalFilename();
+//            fileNames.append(file.getOriginalFilename());
+//            try{
+//                Files.write(fileNameAndPath, file.getBytes());
+//            }catch(IOException e){
+//                e.printStackTrace();
+//            }
+//            medicament.setImagen(nombre);
+//            //model.addAttribute("msg", "Se logró copiar " + fileNames.toString());
+//        }
        // System.out.println("¿Existe? " + this.medicaments.findId(medicament.getNombre()));
         //this.medicaments.findId(medicament.getNombre());
         if (result.hasErrors()) {

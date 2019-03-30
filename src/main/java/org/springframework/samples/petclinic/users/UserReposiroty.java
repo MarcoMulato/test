@@ -35,4 +35,6 @@ public interface UserReposiroty extends Repository<User, Integer> {
     
     void delete(User user);
     
+    public abstract User findByNombre(String nombre);
+    
 }

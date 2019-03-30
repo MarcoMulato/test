@@ -34,7 +34,7 @@ public class UsersController {
 	private final UserReposiroty users;
 	private final User_reportRepository reportes;
 	private Owner ownerMomentaneo;
-	private final UserRepository ur;
+	//private final UserRepository ur;
 	private Owner_report ownerRMomentaneo;
 	private static final String VIEWS_USERS_CREATE_OR_UPDATE_FORM = "users/newUser";
 	private final OwnerRepository owners;
@@ -43,12 +43,11 @@ public class UsersController {
     
 	
 	public UsersController(UserReposiroty clinicService, User_reportRepository ur, 
-		OwnerRepository owners, Owner_report_repo or, UserRepository usr, ProfileRepository pr){
+		OwnerRepository owners, Owner_report_repo or, ProfileRepository pr){
 		this.users = clinicService;
 		this.reportes = ur;
 		this.owners = owners;
 		this.or =or;
-		this.ur = usr;
                 this.pr =pr;
 	}
 	   
@@ -87,7 +86,7 @@ public class UsersController {
 	public String processUpdateOwnerForm(@Valid User user, BindingResult result, @PathVariable("userId") int userId) {
 		User usuario;
 		//System.out.println("ROL: " + user.getRol());
-		usuario = this.ur.findByNombre(user.getNombre());
+		usuario = this.users.findByNombre(user.getNombre());
 		System.out.println("ROL: " + usuario.getRol());
 	    if (result.hasErrors()) {
 		return "users/userList";
@@ -193,7 +192,7 @@ public class UsersController {
 				//this.userMomentaneo = user;
 				//this.userRMomentaneo = ur;
 				this.users.save(user);
-                                usuario = this.ur.findByNombre(user.getNombre());
+                                usuario = this.users.findByNombre(user.getNombre());
 				profile.setId_usuario(usuario.getId());
 				this.reportes.save(ur);
 				this.owners.save(this.ownerMomentaneo);

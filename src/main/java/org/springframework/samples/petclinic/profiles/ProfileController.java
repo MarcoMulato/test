@@ -38,7 +38,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class ProfileController {
 	private static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static/resources/images/profiles/";
-	ProfileRepository profileRepostory;
+	
+        ProfileRepository profileRepostory;
 	Profile profileTemporal;
 	UserReposiroty ur;
 	OwnerRepository or;
@@ -57,10 +58,11 @@ public class ProfileController {
 	
 	@GetMapping("/profiles/profile/{userId}")
 	public String getProfile(@PathVariable("userId") int userId, Model model) {
-		//System.out.println("HI");
+		System.out.println("HI rofile");
                 Profile profile = profileRepostory.findById(userId);
 		this.profileTemporal = profile;
 		System.out.println("Profile: " + profile);
+                System.out.println("getId:" + profile.getId_usuario());
 		User user = this.ur.findById(profile.getId_usuario());
 		Owner owner = this.or.findById(profile.getId_owner());
 		System.out.println("User: " + user);

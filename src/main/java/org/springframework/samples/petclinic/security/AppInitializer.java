@@ -9,14 +9,14 @@ package org.springframework.samples.petclinic.security;
  *
  * @author AlexPS
  */
-import org.springframework.samples.petclinic.users.Users;
+import org.springframework.samples.petclinic.users.User;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
  
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
  
    @Override
    protected Class<?>[] getRootConfigClasses() {
-      return new Class[] { Users.class, SecurityConfig.class };
+      return new Class[] { User.class, SecurityConfig.class };
    }
  
    @Override

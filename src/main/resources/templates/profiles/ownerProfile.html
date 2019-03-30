@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/owners :: owners (~{::body},'user')}">
     <body>
+       
+        <style>
+            .center-data{
+                width:60%;
+                margin:auto;
+            }
+        </style>
+        
         <form th:object="${profile}" class="form-horizontal" id="add-user-form" method="post" enctype="multipart/form-data">
-            <div class="col-sm-offset-1 col-sm-10">
-                <h3>Imagen de Perfil:</h3>
-                <td><img style="height: 150px" th:src="@{'/resources/images/profiles/' + ${profile.foto}}"></td>
-                <input class="btn btn-default" type="file" name="files" /><br>
-                <button class="btn btn-default" type="submit" value="Cambiar Foto" >Cambiar Foto</button>
-                <br><br>
+            <div class="col-sm-offset-1 col-sm-10" >
+                <div class="center-data">
+                    <h3 style="text-align:center" >Imagen de Perfil:</h3>
+                    <img  style="height: 150px; width: 50%; margin-left: 25%; margin-right: 50%; text-align: center;" th:src="@{'/resources/images/profiles/' + ${profile.foto}}"><br><br>
+                    <input class="btn btn-default btn-block" type="file" name="files" /><br>
+                    <button class="btn btn-default btn-block" type="submit" value="Cambiar Foto" >Cambiar Foto</button>
+                    <br>
+                    <a class="btn btn-default btn-block" th:href="@{/users/edit/__${profile.id_usuario}__}">Ir a informacion de usuario</a> <br>
+                    <a class="btn btn-default btn-block" th:href="@{/owners/__${profile.id_owner}__/edit}">Ir a informacion de propietario</a>
+                    <br><br>                    
+                </div>
+
             </div>
             
         </form>
-        <div class="col-sm-offset-1 col-sm-10">
-        <a class="btn btn-default" th:href="@{/users/edit/__${profile.id_usuario}__}">Ir a informacion de usuario</a> <br><br>
-        <a class="btn btn-default" th:href="@{/owners/__${profile.id_owner}__/edit}">Ir a informacion de propietario</a>
-        <br><br><br>
-        </div>
     </body>
 </html>

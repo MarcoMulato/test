@@ -11,7 +11,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.samples.petclinic.owner.Pet;
 import org.springframework.samples.petclinic.users.User;
-import org.springframework.samples.petclinic.users.UserRepository;
+import org.springframework.samples.petclinic.users.UserReposiroty;
 import org.springframework.samples.petclinic.users.loginReports;
 import org.springframework.samples.petclinic.users.userReportsRepository;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Listener implements ApplicationListener{
     private userReportsRepository user;
-    private UserRepository u; 
+    private UserReposiroty u; 
     
     
     @Override
@@ -94,7 +94,7 @@ public class Listener implements ApplicationListener{
         
     }
 
-    public Listener(userReportsRepository user, UserRepository u) {
+    public Listener(userReportsRepository user, UserReposiroty u) {
         this.user = user;
 	this.u = u;
     }

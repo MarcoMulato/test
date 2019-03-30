@@ -19,14 +19,12 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 @Table(name = "profiles")
 public class Profile extends BaseEntity{
 	@Column(name = "id_usuario")
-	
 	private int id_usuario;
 	
 	@Column(name = "id_owner")
-	
 	private int id_owner;
 	
-	@Column(name = "foto")
+        @Column(name = "foto")
 	@NotEmpty
 	private String foto;
 

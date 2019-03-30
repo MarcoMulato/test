@@ -37,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //auth.userDetailsService(userdetailservice);
-        /*
+        
         auth.inMemoryAuthentication()
         .passwordEncoder(passwordEncoder)
-        .withUser("user").password(passwordEncoder.encode("admin")).roles("USER")
+        .withUser("user").password(passwordEncoder.encode("admin")).roles("2")
         .and()
-        .withUser("admin").password(passwordEncoder.encode("admin")).roles("USER", "ADMIN");*/
+        .withUser("admin").password(passwordEncoder.encode("admin")).roles("1", "ADMIN");
         //auth.jdbcAuthentication().usersByUsernameQuery("select nombre from users where nombre = ?").authoritiesByUsernameQuery("select rol from users where nombre = ?").dataSource(dataSource);
         auth
         .jdbcAuthentication()

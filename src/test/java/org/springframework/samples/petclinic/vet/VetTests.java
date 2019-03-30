@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.springframework.util.SerializationUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.springframework.security.test.context.support.WithMockUser;
 
 /**
  * @author Dave Syer
@@ -27,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class VetTests {
 
+    @WithMockUser (username = "admin", roles={"1"})
     @Test
     public void testSerialization() {
         Vet vet = new Vet();
