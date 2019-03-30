@@ -102,10 +102,12 @@ public class User extends BaseEntity {
 		this.activo = activo;
 	}
 
+    @Override
+    public String toString() {
+        return "User{" + "nombre=" + nombre + ", correo=" + correo + ", password=" + password + ", activo=" + activo + ", cp=" + cp + ", municipio=" + municipio + ", rol=" + rol + '}';
+    }
 
-	@Override
-	public String toString() {
-		return "User{" + ", nombre=" + nombre + ", correo=" + correo + ", password=" + password + ", activo=" + activo + ", codigoPostal=" + cp + '}';
-	}
+
+	
 
 }

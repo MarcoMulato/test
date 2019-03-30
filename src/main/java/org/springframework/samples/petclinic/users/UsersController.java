@@ -86,8 +86,10 @@ public class UsersController {
 	public String processUpdateOwnerForm(@Valid User user, BindingResult result, @PathVariable("userId") int userId) {
 		User usuario;
 		//System.out.println("ROL: " + user.getRol());
+                System.out.println("ROL: " + user);
+
 		usuario = this.users.findByNombre(user.getNombre());
-		System.out.println("ROL: " + usuario.getRol());
+		System.out.println("ROL: " + usuario);
 	    if (result.hasErrors()) {
 		return "users/userList";
 	    } else {

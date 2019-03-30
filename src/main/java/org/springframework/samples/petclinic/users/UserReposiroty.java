@@ -35,6 +35,7 @@ public interface UserReposiroty extends Repository<User, Integer> {
     
     void delete(User user);
     
+    @Query("SELECT DISTINCT users FROM User users WHERE users.nombre = :nombre%")
     public abstract User findByNombre(String nombre);
     
 }
